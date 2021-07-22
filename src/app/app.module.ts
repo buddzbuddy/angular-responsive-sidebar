@@ -9,9 +9,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { CrashOrdersComponent } from './crash-orders/crash-orders.component';
+import { AbonentOrdersComponent } from './abonent-orders/abonent-orders.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CrashOrdersComponent, AbonentOrdersComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

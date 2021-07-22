@@ -20,9 +20,15 @@
 
         <mat-divider></mat-divider>
 
-        <button mat-button class="menu-button">
-            <mat-icon>home</mat-icon>
-            <span>Заявки</span>
+        <button (click)="goto('/crash-orders')" [class.selected]="router.isActive('/crash-orders', false)" mat-button
+            class="menu-button">
+            <mat-icon>engineering</mat-icon>
+            <span>Заявки аварийные</span>
+        </button>
+        <button (click)="goto('/abonent-orders')" [class.selected]="router.isActive('/abonent-orders', false)"
+            mat-button class="menu-button">
+            <mat-icon>people_alt</mat-icon>
+            <span>Заявки абонентские</span>
         </button>
         <button mat-button class="menu-button">
             <mat-icon>person</mat-icon>
@@ -43,7 +49,7 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <div class="content mat-elevation-z8">
-            Main content here!
+            <router-outlet></router-outlet>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
