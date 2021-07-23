@@ -11,6 +11,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { CrashOrdersComponent } from './crash-orders/crash-orders.component';
 import { AbonentOrdersComponent } from './abonent-orders/abonent-orders.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [AppComponent, CrashOrdersComponent, AbonentOrdersComponent],
@@ -23,8 +26,11 @@ import { AbonentOrdersComponent } from './abonent-orders/abonent-orders.componen
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
