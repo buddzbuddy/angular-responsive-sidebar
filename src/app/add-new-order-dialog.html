@@ -5,18 +5,18 @@
   <form [formGroup]="formGroup">
     <mat-form-field appearance="outline">
       <mat-label>Телефон</mat-label>
-      <input matInput placeholder="0777010203" formControlName="userPin">
+      <input matInput placeholder="0777010203" formControlName="telephone">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Лицевой счет</mat-label>
-      <input matInput formControlName="firstName">
+      <input matInput formControlName="nch">
     </mat-form-field>
 
     <br>
     <mat-form-field style="width: 50%;" appearance="outline">
       <mat-label>Примечание</mat-label>
-      <textarea matInput></textarea>
+      <textarea matInput formControlName="note"></textarea>
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline">

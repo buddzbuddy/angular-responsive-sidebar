@@ -49,11 +49,9 @@ export class AbonentListBytComponent implements OnInit {
   navigateTo(row: any) {
     //this.router.navigate(['/analitics/view-supplier/' + row.id]);
   }
-  createOrder() {
+  createOrder(row: any) {
     const dialogRef = this.dialog.open(AddNewOrderDialog, {
-      data: {
-        pin: ''
-      }
+      data: row
     });
     dialogRef.afterClosed().subscribe(_ => {
       if (_ != null) {
@@ -87,10 +85,10 @@ export class AddNewOrderDialog implements OnInit {
 
   ngOnInit() {
     this.formGroup = this._formBuilder.group({
-      username: ['', Validators.required],
-      userPin: ['', [Validators.required]],
-      firstName: ['', Validators.required],
-      lastName: ['', [Validators.required]],
+      telephone: ['', Validators.required],//телефон
+      note: ['', [Validators.required]],//примечание
+      nch: ['', Validators.required],//л/сч
+      lastName: ['', [Validators.required]],//
       email: ['', Validators.required],
       password: ['123456789', Validators.required],
     });
