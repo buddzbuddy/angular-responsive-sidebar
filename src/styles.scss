@@ -17,3 +17,22 @@ h4,
 p {
     margin: 0;
 }
+
+/* notification */
+snack-bar-container.success {
+    background-color: #5cb85c;
+    color: #fff;
+}
+snack-bar-container.warn {
+    background-color: #f99157;
+    color: #fff;
+}
+snack-bar-container.notification simple-snack-bar {
+    font-size: 18xp !important;
+    font-weight: bold;
+}
+.fill-remaining-space {
+    /* This fills the remaining space, by using flexbox.
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
