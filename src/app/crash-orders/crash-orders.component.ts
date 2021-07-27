@@ -23,7 +23,7 @@ export interface UserData {
 export class CrashOrdersComponent implements OnInit {
 
   constructor(private _httpClient: HttpClient, private router: Router, private _formBuilder: FormBuilder, private notificationSvc: NotificationService) { }
-  suppliersDisplayedColumns: string[] = ['nazvanie_slujby', 'tp', 'ulisa', 'data_otkl', 'vid_otkl', 'pov_el'/*, 'data_vkl', 'abon_shet', 'FIO', 'dom', 'tel', 'fioUser', 'statusy', 'vid_povrej_elementov', 'remont', 'note'*/];
+  suppliersDisplayedColumns: string[] = ['nazvanie_slujby', 'tp', 'ulisa', 'data_otkl', 'vid_otkl', 'pov_el', 'data_vkl', 'abon_shet', 'FIO', 'dom', 'tel', 'fioUser'/*, 'statusy', 'vid_povrej_elementov', 'remont', 'note'*/];
   ordersData: MatTableDataSource<any> = new MatTableDataSource();
 
   isLoadingResults = false;

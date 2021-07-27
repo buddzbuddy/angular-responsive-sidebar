@@ -63,6 +63,42 @@
             <td mat-cell *matCellDef="let row">{{row.pov_el}}</td>
         </ng-container>
 
+        <!-- Column -->
+        <ng-container matColumnDef="data_vkl">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Дата/время вкл.</th>
+            <td mat-cell *matCellDef="let row">{{row.data_vkl}}</td>
+        </ng-container>
+
+        <!-- Column -->
+        <ng-container matColumnDef="abon_shet">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Лиц.счет</th>
+            <td mat-cell *matCellDef="let row">{{row.abon_shet}}</td>
+        </ng-container>
+
+        <!-- Column -->
+        <ng-container matColumnDef="FIO">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ф.И.О.</th>
+            <td mat-cell *matCellDef="let row">{{row.FIO}}</td>
+        </ng-container>
+
+        <!-- Column -->
+        <ng-container matColumnDef="dom">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Дом/кв</th>
+            <td mat-cell *matCellDef="let row">{{row.dom}}</td>
+        </ng-container>
+
+        <!-- Column -->
+        <ng-container matColumnDef="tel">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Телефон</th>
+            <td mat-cell *matCellDef="let row">{{row.tel}}</td>
+        </ng-container>
+
+        <!-- Column -->
+        <ng-container matColumnDef="fioUser">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Оператор</th>
+            <td mat-cell *matCellDef="let row">{{row.fioUser}}</td>
+        </ng-container>
+
 
         <tr mat-header-row *matHeaderRowDef="suppliersDisplayedColumns"></tr>
         <tr [class.blackList]="row.isBlack" mat-row *matRowDef="let row; columns: suppliersDisplayedColumns;"
