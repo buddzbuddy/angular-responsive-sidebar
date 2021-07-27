@@ -36,3 +36,14 @@ snack-bar-container.notification simple-snack-bar {
        Every toolbar row uses a flexbox row layout. */
     flex: 1 1 auto;
   }
+
+
+  table {
+    width: 100%;
+    td, th {
+      padding: 3px;
+    }
+  }
+  .responsive {
+    overflow: auto;
+  }
