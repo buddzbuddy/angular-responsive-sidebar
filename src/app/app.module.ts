@@ -16,9 +16,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AbonentListBytComponent } from './abonent-list-byt/abonent-list-byt.component';
+import { AbonentListPromComponent } from './abonent-list-prom/abonent-list-prom.component';
 
 @NgModule({
-  declarations: [AppComponent, CrashOrdersComponent, AbonentOrdersComponent],
+  declarations: [AppComponent, CrashOrdersComponent, AbonentOrdersComponent, AbonentListBytComponent, AbonentListPromComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

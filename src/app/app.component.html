@@ -30,11 +30,13 @@
             <mat-icon>people_alt</mat-icon>
             <span>Заявки абонентские</span>
         </button>
-        <button mat-button class="menu-button">
+        <button (click)="goto('/abonent-list-byt')" [class.selected]="router.isActive('/abonent-list-byt', false)"
+            mat-button class="menu-button">
             <mat-icon>assignment_ind</mat-icon>
             <span>Бытовые абоненты</span>
         </button>
-        <button mat-button class="menu-button">
+        <button (click)="goto('/abonent-list-prom')" [class.selected]="router.isActive('/abonent-list-prom', false)"
+            mat-button class="menu-button">
             <mat-icon>business</mat-icon>
             <span>Промышленные абоненты</span>
         </button>
