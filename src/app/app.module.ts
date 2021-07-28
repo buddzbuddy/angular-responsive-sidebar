@@ -18,9 +18,10 @@ import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AbonentListBytComponent } from './abonent-list-byt/abonent-list-byt.component';
 import { AbonentListPromComponent } from './abonent-list-prom/abonent-list-prom.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 @NgModule({
-  declarations: [AppComponent, CrashOrdersComponent, AbonentOrdersComponent, AbonentListBytComponent, AbonentListPromComponent],
+  declarations: [AppComponent, CrashOrdersComponent, AbonentOrdersComponent, AbonentListBytComponent, AbonentListPromComponent, MyOrdersComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

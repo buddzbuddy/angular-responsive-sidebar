@@ -40,6 +40,11 @@
             <mat-icon>business</mat-icon>
             <span>Промышленные абоненты</span>
         </button>
+        <button (click)="goto('/my-orders')" [class.selected]="router.isActive('/my-orders', false)" mat-button
+            class="menu-button">
+            <mat-icon>personal_injury</mat-icon>
+            <span>Мои заявки</span>
+        </button>
 
         <mat-divider></mat-divider>
 
