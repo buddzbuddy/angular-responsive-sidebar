@@ -23,14 +23,15 @@ export class AbonentListPromComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  formGroup!: FormGroup;
+
+  nch = ''
   ngOnInit() {
     this.fetchSuppliers();
   }
 
   fetchSuppliers() {
     this.isLoadingResults = true;
-    const href = 'http://158.181.176.170:9999/api/abonents/GetProm';
+    const href = 'http://158.181.176.170:9999/api/abonents/GetProm?nch=' + this.nch;
     const requestUrl = `${href}`;
     this._httpClient.get<any>(requestUrl).subscribe(_ => {
       if (_.result) {
@@ -46,16 +47,15 @@ export class AbonentListPromComponent implements OnInit {
     });
   }
   navigateTo(row: any) {
-    this.router.navigate(['/analitics/view-supplier/' + row.id]);
+    //this.router.navigate(['/analitics/view-supplier/' + row.id]);
   }
 
   applyFilter() {
-
     this.fetchSuppliers();
   }
 
   clearFilter() {
-    //this.formGroup.reset();
+    this.nch = '';
     this.fetchSuppliers();
   }
   goBack() {

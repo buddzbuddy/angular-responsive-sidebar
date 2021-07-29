@@ -19,11 +19,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AbonentListBytComponent } from './abonent-list-byt/abonent-list-byt.component';
 import { AbonentListPromComponent } from './abonent-list-prom/abonent-list-prom.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, CrashOrdersComponent, AbonentOrdersComponent, AbonentListBytComponent, AbonentListPromComponent, MyOrdersComponent],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
