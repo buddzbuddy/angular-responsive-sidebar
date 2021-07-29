@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>
+  <mat-icon>add_box</mat-icon> Создать заявку
+</h1>
+<div mat-dialog-content>
+  <form [formGroup]="formGroup">
+    <mat-form-field appearance="outline">
+      <mat-label>Телефон</mat-label>
+      <input matInput placeholder="0777010203" formControlName="userPin">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Лицевой счет</mat-label>
+      <input matInput formControlName="firstName">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field style="width: 50%;" appearance="outline">
+      <mat-label>Примечание</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>ФИО</mat-label>
+      <input matInput formControlName="lastName">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Улица</mat-label>
+      <input matInput formControlName="username">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>ТП</mat-label>
+      <input matInput formControlName="password">
+    </mat-form-field>
+  </form>
+  <p style="color: red;" *ngIf="errorMessage != ''">{{errorMessage}}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onSaveClick()" color="primary">Заявка абонента</button>
+  <button mat-raised-button (click)="onSaveClick()" color="warn">Аварийная заявка</button>
+  <button mat-raised-button (click)="onCloseClick()">Отмена</button>
+</div>

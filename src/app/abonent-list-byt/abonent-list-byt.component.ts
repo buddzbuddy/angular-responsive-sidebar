@@ -1,11 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component, ViewChild, AfterViewInit, OnInit, Inject } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { NotificationService } from '../notification.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-abonent-list-byt',
@@ -14,8 +15,8 @@ import { NotificationService } from '../notification.service';
 })
 export class AbonentListBytComponent implements OnInit {
 
-  constructor(private _httpClient: HttpClient, private router: Router, private _formBuilder: FormBuilder, private notificationSvc: NotificationService) { }
-  suppliersDisplayedColumns: string[] = ['raion_name', 'nch', 'fio', 'address1', 'address2', 'tp', 'zavNomer', 'ccounter2', 'debet', 'penya', 'akt', 'carea2', 'carea'/*, 'vid_povrej_elementov', 'remont', 'note'*/];
+  constructor(private _httpClient: HttpClient, private router: Router, public dialog: MatDialog, private notificationSvc: NotificationService) { }
+  suppliersDisplayedColumns: string[] = ['action', 'raion_name', 'nch', 'fio', 'address1', 'address2', 'tp', 'zavNomer', 'ccounter2', 'debet', 'penya', 'akt', 'carea2', 'carea'/*, 'vid_povrej_elementov', 'remont', 'note'*/];
   ordersData: MatTableDataSource<any> = new MatTableDataSource();
 
   isLoadingResults = false;
@@ -48,7 +49,18 @@ export class AbonentListBytComponent implements OnInit {
   navigateTo(row: any) {
     //this.router.navigate(['/analitics/view-supplier/' + row.id]);
   }
-
+  createOrder() {
+    const dialogRef = this.dialog.open(AddNewOrderDialog, {
+      data: {
+        pin: ''
+      }
+    });
+    dialogRef.afterClosed().subscribe(_ => {
+      if (_ != null) {
+        console.log(_);
+      }
+    });
+  }
   applyFilter() {
     this.fetchSuppliers();
   }
@@ -59,5 +71,93 @@ export class AbonentListBytComponent implements OnInit {
   }
   goBack() {
     window.history.back();
+  }
+}
+
+
+@Component({
+  selector: 'add-new-order-dialog',
+  templateUrl: '../add-new-order-dialog.html',
+})
+export class AddNewOrderDialog implements OnInit {
+  formGroup!: FormGroup;
+  constructor(
+    public dialogRef: MatDialogRef<AddNewOrderDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any, private _httpClient: HttpClient, private _formBuilder: FormBuilder,) { }
+
+  ngOnInit() {
+    this.formGroup = this._formBuilder.group({
+      username: ['', Validators.required],
+      userPin: ['', [Validators.required]],
+      firstName: ['', Validators.required],
+      lastName: ['', [Validators.required]],
+      email: ['', Validators.required],
+      password: ['123456789', Validators.required],
+    });
+    this.loadRoles();
+  }
+  conditions: any = {
+
+  }
+  onSaveClick(): void {
+    this.saveUser();
+  }
+  onCloseClick(): void {
+    this.dialogRef.close();
+  }
+  selectedRoleName = ''
+  roles: any[] = []
+  loadRoles() {
+    const href = 'data-api/user-constraint/role/getAll';
+    const requestUrl = `${href}`;
+    this._httpClient.get<any[]>(requestUrl).subscribe(_ => {
+      this.roles = _;
+    });
+  }
+
+  errorMessage = ''
+  reqStatus = 0
+  selectItemsForSrc: any = {}
+  saveUser() {
+    const href = `auth/admin/realms/dgz/users`;
+    const requestUrl = `${href}`;
+    let obj = this.formGroup.value;
+    let userPin = obj['userPin'];
+    let userPass = obj['password'];
+    delete obj['userPin'];
+    delete obj['password'];
+    let data =
+    {
+      ...obj,
+      emailVerified: true,
+      enabled: true,
+      requiredActions: ["UPDATE_PASSWORD"],
+      attributes:
+      {
+        userPin: [userPin],
+        userRole: [this.selectedRoleName]
+      },
+      credentials: [
+        {
+          type: "password",
+          value: userPass
+        }
+      ]
+    }
+    this.errorMessage = '';
+    this.reqStatus = 0;
+    this._httpClient.post<any>(requestUrl, data).subscribe(_ => {
+      this.dialogRef.close(true);
+    },
+      err => {
+        if (err.status == 409) {
+          this.errorMessage = "Такой логин уже присвоен!";
+        }
+        else {
+          this.errorMessage = err.message;
+        }
+
+        console.log('ошибка', err);
+      });
   }
 }
