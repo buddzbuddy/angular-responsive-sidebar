@@ -30,7 +30,7 @@ export class MyOrdersComponent implements OnInit {
 
   fetchSuppliers() {
     this.isLoadingResults = true;
-    const href = 'http://158.181.176.170:9999/api/orders/getbyuserid?userid=186';
+    const href = 'http://192.168.88.16:9999/api/orders/getbyuserid?userid=186';
     const requestUrl = `${href}`;
     this._httpClient.get<any>(requestUrl).subscribe(_ => {
       if (_.result) {
