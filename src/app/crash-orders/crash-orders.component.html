@@ -140,7 +140,8 @@
 
 
         <tr mat-header-row *matHeaderRowDef="suppliersDisplayedColumns"></tr>
-        <tr [class.text-red]="row.data_vkl == null" mat-row
+        <tr [class.text-red]="row.data_vkl == null" [class.text-yellow]="isYellow(row.data_vkl)"
+            [class.text-green]="isGreen(row.data_vkl)" mat-row
             *matRowDef="let row; columns: suppliersDisplayedColumns;let idx = index;">
         </tr>
     </table>

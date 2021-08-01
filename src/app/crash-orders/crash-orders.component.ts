@@ -73,6 +73,20 @@ export class CrashOrdersComponent implements OnInit {
   sdata: any
   podata: any
 
+  isYellow(data_vkl: any) {
+    let currentDate: Date = new Date();
+    let d = new Date(data_vkl);
+    if (d.getTime() > currentDate.getTime())
+      return true;
+    return false;
+  }
+  isGreen(data_vkl: any) {
+    let currentDate: Date = new Date();
+    let d = new Date(data_vkl);
+    if (data_vkl != null && d.getTime() <= currentDate.getTime())
+      return true;
+    return false;
+  }
   applyFilter() {
 
     console.log('sdata', this.sdata);
