@@ -86,13 +86,20 @@ export class AddNewOrderDialog implements OnInit {
   ngOnInit() {
     this.formGroup = this._formBuilder.group({
       telephone: ['', Validators.required],//телефон
+      data_vkl: ['', [Validators.required]],//
+      timeout: ['', Validators.required],
       note: ['', [Validators.required]],//примечание
       nch: ['', Validators.required],//л/сч
-      lastName: ['', [Validators.required]],//
-      email: ['', Validators.required],
-      password: ['123456789', Validators.required],
+      zavNomer: ['', Validators.required],
+      tp: ['', Validators.required],
+      tip_shetchika: ['', Validators.required],
+      fio: ['', Validators.required],
+      address1: ['', Validators.required],
+      address2: ['', Validators.required],
+      debet: ['', Validators.required],
+      penya: ['', Validators.required],
+      akt: ['', Validators.required],
     });
-    this.loadRoles();
   }
   conditions: any = {
 
