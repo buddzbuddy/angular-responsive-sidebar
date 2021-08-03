@@ -1,26 +1,26 @@
 <h1 mat-dialog-title>
-  <mat-icon>add_box</mat-icon> Создать заявку
+  <mat-icon>add_box</mat-icon> Редактировать заявку
 </h1>
 <div mat-dialog-content>
+  <p style="color: red;" *ngIf="errorMessage != ''">{{errorMessage}}</p>
   <form [formGroup]="formGroup">
     <mat-form-field appearance="outline">
       <mat-label>Телефон</mat-label>
-      <input matInput placeholder="0777010203" formControlName="telephone">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Послед. дата вкл.</mat-label>
-      <input matInput formControlName="data_vkl">
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="outline">
-      <mat-label>Статус</mat-label>
-      <input matInput formControlName="timeout">
+      <input matInput placeholder="0777010203" formControlName="telephone" cdkFocusInitial>
     </mat-form-field>
     <br>
     <mat-form-field style="width: 50%;" appearance="outline">
       <mat-label>Примечание</mat-label>
       <textarea matInput formControlName="note"></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Послед. дата вкл.</mat-label>
+      <input matInput formControlName="data_vkl">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Статус</mat-label>
+      <input matInput formControlName="timeout">
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline">
@@ -69,10 +69,8 @@
       <input matInput formControlName="akt">
     </mat-form-field>
   </form>
-  <p style="color: red;" *ngIf="errorMessage != ''">{{errorMessage}}</p>
 </div>
 <div mat-dialog-actions>
-  <button mat-raised-button (click)="onSaveClick()" color="primary">Заявка абонента</button>
-  <button mat-raised-button (click)="onSaveClick()" color="warn">Аварийная заявка</button>
+  <button mat-raised-button (click)="onSaveClick()" color="primary">Сохранить</button>
   <button mat-raised-button (click)="onCloseClick()">Отмена</button>
 </div>

@@ -9,7 +9,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
-import { CrashOrdersComponent } from './crash-orders/crash-orders.component';
+import { CrashOrdersComponent, EditOrderDialog } from './crash-orders/crash-orders.component';
 import { AbonentOrdersComponent } from './abonent-orders/abonent-orders.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -20,10 +20,13 @@ import { AbonentListBytComponent, AddNewOrderDialog } from './abonent-list-byt/a
 import { AbonentListPromComponent } from './abonent-list-prom/abonent-list-prom.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatTableExporterModule } from 'mat-table-exporter';
+
 
 @NgModule({
   declarations: [AppComponent, CrashOrdersComponent, AbonentOrdersComponent, AbonentListBytComponent, AbonentListPromComponent, MyOrdersComponent,
-    AddNewOrderDialog
+    AddNewOrderDialog,
+    EditOrderDialog
   ],
   imports: [
     BrowserModule,
@@ -32,12 +35,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableExporterModule
   ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    AddNewOrderDialog
+    AddNewOrderDialog,
+    EditOrderDialog
   ]
 })
 export class AppModule { }

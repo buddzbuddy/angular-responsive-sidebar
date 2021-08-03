@@ -1,0 +1,77 @@
+<h1 mat-dialog-title>
+  <mat-icon>add_box</mat-icon> Создать заявку
+</h1>
+<div mat-dialog-content>
+  <p style="color: red;" *ngIf="errorMessage != ''">{{errorMessage}}</p>
+  <form [formGroup]="formGroup">
+    <mat-form-field appearance="outline">
+      <mat-label>Телефон</mat-label>
+      <input matInput placeholder="0777010203" formControlName="telephone">
+    </mat-form-field>
+    <br>
+    <mat-form-field style="width: 50%;" appearance="outline">
+      <mat-label>Примечание</mat-label>
+      <textarea matInput formControlName="note" cdkFocusInitial></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Послед. дата вкл.</mat-label>
+      <input matInput formControlName="data_vkl">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Статус</mat-label>
+      <input matInput formControlName="timeout">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Л-сч</mat-label>
+      <input matInput formControlName="nch">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Номер счетчика</mat-label>
+      <input matInput formControlName="zavNomer">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>ТП</mat-label>
+      <input matInput formControlName="tp">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Тип счетчика</mat-label>
+      <input matInput formControlName="tip_shetchika">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>ФИО</mat-label>
+      <input matInput formControlName="fio">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Улица</mat-label>
+      <input matInput formControlName="address1">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Дом/кв</mat-label>
+      <input matInput formControlName="address2">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Задолженность</mat-label>
+      <input matInput formControlName="debet">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Пеня</mat-label>
+      <input matInput formControlName="penya">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Акт</mat-label>
+      <input matInput formControlName="akt">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onCreateAbonOrderClick()" color="primary">Заявка абонента</button>
+  <button mat-raised-button (click)="onCreateCrashOrderClick()" color="warn">Аварийная заявка</button>
+  <button mat-raised-button (click)="onCloseClick()">Отмена</button>
+</div>

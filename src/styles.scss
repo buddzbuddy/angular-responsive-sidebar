@@ -58,3 +58,15 @@ snack-bar-container.notification simple-snack-bar {
   border: 1px solid #434396 !important;
   color: #ffffff;
 }
+
+.custom-btn--red-color {
+  background-color: #d34545 !important;
+  border: 1px solid #32c26e !important;
+  color: #ffffff;
+}
+
+.text-red {
+  text-decoration: line-through;
+    text-decoration-color: red;
+    text-decoration-style: double;
+}

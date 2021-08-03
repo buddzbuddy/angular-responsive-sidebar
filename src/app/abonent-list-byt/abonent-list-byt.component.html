@@ -35,7 +35,12 @@
 </mat-accordion>
 <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
 <div class="responsive">
-  <table mat-table [dataSource]="ordersData" class="example-table" matSort>
+  <button color="primary" matTooltip="Скачать в Excel" mat-button
+    (click)="exporter.exportTable('xlsx', {fileName:'export-file', sheet: 'sheet_name', Props: {Author: 'Talha'}})">
+    <mat-icon>get_app</mat-icon> скачать Excel
+  </button>
+  <table matTableExporter #exporter="matTableExporter" mat-table [dataSource]="ordersData" class="example-table"
+    matSort>
     <!-- Created Column -->
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>

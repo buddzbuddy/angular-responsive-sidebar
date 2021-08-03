@@ -24,7 +24,24 @@
 </mat-accordion>
 <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
 <div class="responsive">
-    <table mat-table [dataSource]="ordersData" class="example-table" matSort>
+    <button color="primary" matTooltip="Скачать в Excel" mat-button
+        (click)="exporter.exportTable('xlsx', {fileName:'export-file', sheet: 'sheet_name', Props: {Author: 'Talha'}})">
+        <mat-icon>get_app</mat-icon> скачать Excel
+    </button>
+    <table matTableExporter #exporter="matTableExporter" mat-table [dataSource]="ordersData" class="example-table"
+        matSort>
+        <!-- Created Column -->
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let row">
+                <button mat-icon-button (click)="cancelOrder(row)" color="warn" matTooltip="Отменить заявку">
+                    <mat-icon>cancel</mat-icon>
+                </button>
+                <button mat-icon-button (click)="editOrder(row)" color="primary" matTooltip="Редактировать">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </td>
+        </ng-container>
         <!-- Created Column -->
         <ng-container matColumnDef="nazvanie_slujby">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
@@ -47,7 +64,7 @@
 
         <!-- legalAddress Column -->
         <ng-container matColumnDef="data_otkl">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Адрес (юрид)</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Дата откл.</th>
             <td mat-cell *matCellDef="let row">{{row.data_otkl | date:'dd.MM.yyyy hh:mm'}}</td>
         </ng-container>
 
@@ -76,9 +93,9 @@
         </ng-container>
 
         <!-- Column -->
-        <ng-container matColumnDef="FIO">
+        <ng-container matColumnDef="fio">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Ф.И.О.</th>
-            <td mat-cell *matCellDef="let row">{{row.FIO}}</td>
+            <td mat-cell *matCellDef="let row">{{row.fio}}</td>
         </ng-container>
 
         <!-- Column -->
@@ -101,8 +118,9 @@
 
 
         <tr mat-header-row *matHeaderRowDef="suppliersDisplayedColumns"></tr>
-        <tr [class.blackList]="row.isBlack" mat-row *matRowDef="let row; columns: suppliersDisplayedColumns;"
-            (click)="navigateTo(row)"></tr>
+        <tr [class.text-red]="deleted[idx] == row" mat-row
+            *matRowDef="let row; columns: suppliersDisplayedColumns;let idx = index;">
+        </tr>
     </table>
 </div>
 

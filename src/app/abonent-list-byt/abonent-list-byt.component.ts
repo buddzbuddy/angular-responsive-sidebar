@@ -38,7 +38,7 @@ export class AbonentListBytComponent implements OnInit {
         this.ordersData = new MatTableDataSource(_.data);
         this.ordersData.paginator = this.paginator;
         this.ordersData.sort = this.sort;
-        this.notificationSvc.success('Данные успешно загружены!');
+        //this.notificationSvc.success('Данные успешно загружены!');
       }
       else {
         this.notificationSvc.warn('Что-то пошло не так ((');
@@ -54,8 +54,10 @@ export class AbonentListBytComponent implements OnInit {
       data: row
     });
     dialogRef.afterClosed().subscribe(_ => {
-      if (_ != null) {
+      if (_) {
         console.log(_);
+        this.notificationSvc.success('Заявка успешно сохранена!');
+        this.router.navigate(['/crash-orders']);
       }
     });
   }
@@ -75,94 +77,103 @@ export class AbonentListBytComponent implements OnInit {
 
 @Component({
   selector: 'add-new-order-dialog',
-  templateUrl: '../add-new-order-dialog.html',
+  templateUrl: 'add-new-order-dialog.html',
 })
 export class AddNewOrderDialog implements OnInit {
   formGroup!: FormGroup;
   constructor(
     public dialogRef: MatDialogRef<AddNewOrderDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private _httpClient: HttpClient, private _formBuilder: FormBuilder,) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private _httpClient: HttpClient, private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.formGroup = this._formBuilder.group({
-      telephone: ['', Validators.required],//телефон
-      data_vkl: ['', [Validators.required]],//
-      timeout: ['', Validators.required],
+      telephone: [this.data['cphone'], Validators.required],//телефон
+      data_vkl: [this.data['data_vkl'], [Validators.required]],//
+      timeout: [this.data['timeout'], Validators.required],
       note: ['', [Validators.required]],//примечание
-      nch: ['', Validators.required],//л/сч
-      zavNomer: ['', Validators.required],
-      tp: ['', Validators.required],
+      nch: [this.data['nch'], Validators.required],//л/сч
+      zavNomer: [this.data['zavNomer'], Validators.required],
+      tp: [this.data['tp'], Validators.required],
       tip_shetchika: ['', Validators.required],
-      fio: ['', Validators.required],
-      address1: ['', Validators.required],
-      address2: ['', Validators.required],
-      debet: ['', Validators.required],
-      penya: ['', Validators.required],
-      akt: ['', Validators.required],
+      fio: [this.data['fio'], Validators.required],
+      address1: [this.data['address1'], Validators.required],
+      address2: [this.data['address2'], Validators.required],
+      debet: [this.data['debet'], Validators.required],
+      penya: [this.data['penya'], Validators.required],
+      akt: [this.data['akt'], Validators.required],
     });
+    this.loadStatuses(this.data['zavNomer']);
+    this.loadTipSchetchika(this.data['zavNomer'], this.data['idMarka'])
   }
-  conditions: any = {
-
+  onCreateCrashOrderClick(): void {
+    this.createCrashOrder();
   }
-  onSaveClick(): void {
-    this.saveUser();
+  onCreateAbonOrderClick(): void {
+    this.createAbonOrder();
   }
   onCloseClick(): void {
     this.dialogRef.close();
   }
-  selectedRoleName = ''
-  roles: any[] = []
-  loadRoles() {
-    const href = 'data-api/user-constraint/role/getAll';
+  statusObj: any = null
+  loadStatuses(zavNomer: string) {
+    const href = 'http://158.181.176.170:9999/api/abonents/GetStatusByZavNomer?zavNomer=' + zavNomer;
     const requestUrl = `${href}`;
-    this._httpClient.get<any[]>(requestUrl).subscribe(_ => {
-      this.roles = _;
+    this._httpClient.get<any>(requestUrl).subscribe(_ => {
+      if (_.result) {
+        this.statusObj = _.data;
+        this.formGroup.patchValue(_.data);
+      }
+    });
+  }
+  loadTipSchetchika(zavNomer: string, idmarka: number) {
+    const href = `http://158.181.176.170:9999/api/abonents/GetTipShetchika?zavodNomer=${zavNomer}&idmarka=${idmarka}`;
+    const requestUrl = `${href}`;
+    this._httpClient.get<any>(requestUrl).subscribe(_ => {
+      let s = '';
+      if (_.result) {
+        s = 'умный';
+      }
+      else {
+        s = 'не умный';
+      }
+      this.formGroup.patchValue({ tip_shetchika: s });
     });
   }
 
   errorMessage = ''
-  reqStatus = 0
-  selectItemsForSrc: any = {}
-  saveUser() {
-    const href = `auth/admin/realms/dgz/users`;
+  createCrashOrder() {
+    const href = `http://158.181.176.170:9999/api/orders/CreateCrashOrder`;
     const requestUrl = `${href}`;
     let obj = this.formGroup.value;
-    let userPin = obj['userPin'];
-    let userPass = obj['password'];
-    delete obj['userPin'];
-    delete obj['password'];
-    let data =
-    {
-      ...obj,
-      emailVerified: true,
-      enabled: true,
-      requiredActions: ["UPDATE_PASSWORD"],
-      attributes:
-      {
-        userPin: [userPin],
-        userRole: [this.selectedRoleName]
-      },
-      credentials: [
-        {
-          type: "password",
-          value: userPass
-        }
-      ]
-    }
+    obj['raion'] = this.data['raion'];
+    //obj['data_otkl'] = this.statusObj != null ? this.statusObj['data_otkl'] : null;
     this.errorMessage = '';
-    this.reqStatus = 0;
-    this._httpClient.post<any>(requestUrl, data).subscribe(_ => {
-      this.dialogRef.close(true);
+    this._httpClient.post<any>(requestUrl, obj).subscribe(_ => {
+      console.log(_);
+      if (_.result) {
+        this.dialogRef.close(true);
+      }
     },
       err => {
-        if (err.status == 409) {
-          this.errorMessage = "Такой логин уже присвоен!";
-        }
-        else {
-          this.errorMessage = err.message;
-        }
+        this.errorMessage = err.message;
+      });
+  }
 
-        console.log('ошибка', err);
+  createAbonOrder() {
+    const href = `http://158.181.176.170:9999/api/orders/CreateAbonOrder`;
+    const requestUrl = `${href}`;
+    let obj = this.formGroup.value;
+    obj['raion'] = this.data['raion'];
+    //obj['data_otkl'] = this.statusObj != null ? this.statusObj['data_otkl'] : null;
+    this.errorMessage = '';
+    this._httpClient.post<any>(requestUrl, obj).subscribe(_ => {
+      console.log(_);
+      if (_.result) {
+        this.dialogRef.close(true);
+      }
+    },
+      err => {
+        this.errorMessage = err.message;
       });
   }
 }

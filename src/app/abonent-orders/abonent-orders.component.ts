@@ -15,7 +15,7 @@ import { NotificationService } from '../notification.service';
 export class AbonentOrdersComponent implements OnInit {
 
   constructor(private _httpClient: HttpClient, private router: Router, private _formBuilder: FormBuilder, private notificationSvc: NotificationService) { }
-  suppliersDisplayedColumns: string[] = ['nazvanie_slujby', 'tp', 'ulisa', 'data_otkl', 'vid_otkl', 'pov_el', 'data_vkl', 'abon_shet', 'FIO', 'dom', 'tel', 'fioUser'/*, 'statusy', 'vid_povrej_elementov', 'remont', 'note'*/];
+  suppliersDisplayedColumns: string[] = ['nazvanie_slujby', 'tp', 'ulisa', 'data_otkl', 'vid_otkl', 'pov_el', 'data_vkl', 'abon_shet', 'fio', 'dom', 'tel', 'fioUser'/*, 'statusy', 'vid_povrej_elementov', 'remont', 'note'*/];
   ordersData: MatTableDataSource<any> = new MatTableDataSource();
 
   isLoadingResults = false;
@@ -37,7 +37,7 @@ export class AbonentOrdersComponent implements OnInit {
         this.ordersData = new MatTableDataSource(_.data);
         this.ordersData.paginator = this.paginator;
         this.ordersData.sort = this.sort;
-        this.notificationSvc.success('Данные успешно загружены!');
+        //this.notificationSvc.success('Данные успешно загружены!');
       }
       else {
         this.notificationSvc.warn('Что-то пошло не так ((');
