@@ -21,12 +21,14 @@ import { AbonentListPromComponent } from './abonent-list-prom/abonent-list-prom.
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import { ChatComponent } from './chat/chat.component';
 
 
 @NgModule({
   declarations: [AppComponent, CrashOrdersComponent, AbonentOrdersComponent, AbonentListBytComponent, AbonentListPromComponent, MyOrdersComponent,
     AddNewOrderDialog,
-    EditOrderDialog
+    EditOrderDialog,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

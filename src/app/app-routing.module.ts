@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AbonentListBytComponent } from './abonent-list-byt/abonent-list-byt.component';
 import { AbonentListPromComponent } from './abonent-list-prom/abonent-list-prom.component';
 import { AbonentOrdersComponent } from './abonent-orders/abonent-orders.component';
+import { ChatComponent } from './chat/chat.component';
 import { CrashOrdersComponent } from './crash-orders/crash-orders.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'my-orders', component: MyOrdersComponent },
   { path: 'abonent-list-byt', component: AbonentListBytComponent },
   { path: 'abonent-list-prom', component: AbonentListPromComponent },
+  { path: 'chat', component: ChatComponent },
 ];
 
 @NgModule({

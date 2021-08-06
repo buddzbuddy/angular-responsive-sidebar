@@ -45,6 +45,11 @@
             <mat-icon>personal_injury</mat-icon>
             <span>Мои заявки</span>
         </button>
+        <button (click)="goto('/chat')" [class.selected]="router.isActive('/chat', false)" mat-button
+            class="menu-button">
+            <mat-icon>chat</mat-icon>
+            <span>Чат операторов</span>
+        </button>
 
         <mat-divider></mat-divider>
 
