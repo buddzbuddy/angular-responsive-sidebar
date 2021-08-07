@@ -22,13 +22,17 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { ChatComponent } from './chat/chat.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { LocalStorageService } from './services/local-storage.service';
 
 
 @NgModule({
   declarations: [AppComponent, CrashOrdersComponent, AbonentOrdersComponent, AbonentListBytComponent, AbonentListPromComponent, MyOrdersComponent,
     AddNewOrderDialog,
     EditOrderDialog,
-    ChatComponent
+    LoginPageComponent,
+    ChatComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
@@ -40,11 +44,15 @@ import { ChatComponent } from './chat/chat.component';
     HttpClientModule,
     MatTableExporterModule
   ],
-  providers: [],
+  providers: [
+
+    LocalStorageService,
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     AddNewOrderDialog,
-    EditOrderDialog
+    EditOrderDialog,
+    LoginPageComponent
   ]
 })
 export class AppModule { }

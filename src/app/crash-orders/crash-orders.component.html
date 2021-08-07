@@ -15,10 +15,32 @@
                 <mat-icon>filter_alt</mat-icon>
             </mat-panel-description>
         </mat-expansion-panel-header>
-        <div style="width: 90%;border: 1px solid gray;border-radius: 5px;padding: 5px;margin: 5px;">
-
+        <div style="width: 90%;padding: 5px;margin: 5px;">
+            <div class="row">
+                <table>
+                    <tr>
+                        <td>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Дата заявки С</mat-label>
+                                <input matInput [matDatepicker]="picker1" [(ngModel)]="sdata">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Дата заявки По</mat-label>
+                                <input matInput [matDatepicker]="picker2" [(ngModel)]="podata">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        <button mat-raised-button (click)="applyFilter()" class="custom-btn-color">Применить</button>
+        <button mat-raised-button (click)="applyFilter()" [disabled]="sdata == null || podata == null"
+            class="custom-btn-color">Применить</button>
         <button mat-raised-button color="secondary" (click)="clearFilter()">Сбросить</button>
     </mat-expansion-panel>
 </mat-accordion>
@@ -64,7 +86,7 @@
 
         <!-- legalAddress Column -->
         <ng-container matColumnDef="data_otkl">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Дата откл.</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Дата/время откл.</th>
             <td mat-cell *matCellDef="let row">{{row.data_otkl | date:'dd.MM.yyyy hh:mm'}}</td>
         </ng-container>
 
@@ -83,7 +105,7 @@
         <!-- Column -->
         <ng-container matColumnDef="data_vkl">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Дата/время вкл.</th>
-            <td mat-cell *matCellDef="let row">{{row.data_vkl}}</td>
+            <td mat-cell *matCellDef="let row">{{row.data_vkl | date:'dd.MM.yyyy hh:mm'}}</td>
         </ng-container>
 
         <!-- Column -->

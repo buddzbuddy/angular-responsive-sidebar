@@ -1,0 +1,20 @@
+<div class="login-wrap">
+    <div class="login-html">
+        <div class="login-form">
+            <div class="sign-in-htm">
+                <div class="group">
+                    <label for="user" class="label">Логин</label>
+                    <input id="user" type="text" class="input" [(ngModel)]="username">
+                </div>
+                <div class="group">
+                    <label for="pass" class="label">Пароль</label>
+                    <input (keyup.enter)="login()" id="pass" type="password" class="input" data-type="password"
+                        [(ngModel)]="password">
+                </div>
+                <div class="group">
+                    <button (keyup.enter)="login()" type="button" class="button" (click)="login()">Войти</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

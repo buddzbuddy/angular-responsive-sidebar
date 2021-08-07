@@ -38,12 +38,12 @@ snack-bar-container.notification simple-snack-bar {
   }
 
 
-  table {
+  table.mat-table {
     width: 100%;
-  }
     td, th {
       padding: 3px !important;
     }
+  }
   .responsive {
     overflow: auto;
   }

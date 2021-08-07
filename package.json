@@ -23,6 +23,7 @@
     "@angular/router": "~11.2.0",
     "@microsoft/signalr": "^5.0.8",
     "mat-table-exporter": "^10.2.3",
+    "ngx-webstorage-service": "^4.1.0",
     "rxjs": "~6.6.0",
     "tailwindcss": "^2.0.3",
     "tslib": "^2.0.0",

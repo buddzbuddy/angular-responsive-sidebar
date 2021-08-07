@@ -7,7 +7,11 @@
             close
         </mat-icon>
     </button>
-    Северэлектро
+    <span>Северэлектро</span>
+    <span class="fill-remaining-space"></span>
+    <button mat-icon-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+    </button>
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -15,8 +19,8 @@
 
         <img class="avatar mat-elevation-z8" src="assets/avatar.jpg" />
 
-        <h4 class="name">Айбек К</h4>
-        <p class="designation">Оператор 1</p>
+        <h4 class="name">{{userInfo.fioUser}}</h4>
+        <p class="designation">{{userInfo.dol}}</p>
 
         <mat-divider></mat-divider>
 
@@ -48,7 +52,7 @@
         <button (click)="goto('/chat')" [class.selected]="router.isActive('/chat', false)" mat-button
             class="menu-button">
             <mat-icon>chat</mat-icon>
-            <span>Чат операторов</span>
+            <span>Чат</span>
         </button>
 
         <mat-divider></mat-divider>

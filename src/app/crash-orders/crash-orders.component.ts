@@ -46,17 +46,44 @@ export class CrashOrdersComponent implements OnInit {
       this.isLoadingResults = false;
     });
   }
+  fetchSuppliersByPeriod() {
+    this.isLoadingResults = true;
+    const href = 'http://158.181.176.170:9999/api/orders/GetCrashOrdersForPeriod';
+    const requestUrl = `${href}`;
+    let obj = {
+      sdata: this.sdata,
+      podata: this.podata
+    }
+    this._httpClient.post<any>(requestUrl, obj).subscribe(_ => {
+      if (_.result) {
+        this.ordersData = new MatTableDataSource(_.data);
+        this.ordersData.paginator = this.paginator;
+        this.ordersData.sort = this.sort;
+        //this.notificationSvc.success('Данные успешно загружены!');
+      }
+      else {
+        this.notificationSvc.warn('Что-то пошло не так ((');
+      }
+      this.isLoadingResults = false;
+    });
+  }
   navigateTo(row: any) {
     //this.router.navigate(['/analitics/view-supplier/' + row.id]);
   }
+  sdata: any
+  podata: any
 
   applyFilter() {
 
-    this.fetchSuppliers();
+    console.log('sdata', this.sdata);
+    console.log('podata', this.podata);
+    this.fetchSuppliersByPeriod();
   }
 
   clearFilter() {
     //this.formGroup.reset();
+    this.sdata = null;
+    this.podata = null;
     this.fetchSuppliers();
   }
   goBack() {
