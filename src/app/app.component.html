@@ -54,6 +54,10 @@
             <mat-icon>chat</mat-icon>
             <span>Чат</span>
         </button>
+        <button [class.selected]="router.isActive('/reports', false)" mat-button class="menu-button">
+            <mat-icon>summarize</mat-icon>
+            <span>Отчеты</span>
+        </button>
 
         <mat-divider></mat-divider>
 

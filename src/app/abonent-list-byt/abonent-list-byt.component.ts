@@ -23,12 +23,34 @@ export class AbonentListBytComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-
+  address1Filter = new FormControl();
+  address2Filter = new FormControl();
+  //private filterValues = { address1: '', address2: '' }
+  filteredValues = {
+    address1: '', address2: ''
+  };
   nch = ''
   ngOnInit() {
     this.fetchSuppliers();
   }
+  applyFilter(filterValue: string) {
+    let filter = {
+      address1: filterValue.trim().toLowerCase(),
+      address2: filterValue.trim().toLowerCase()
+    }
+    this.ordersData.filter = JSON.stringify(filter)
+  }
 
+  createFilter() {
+    let filterFunction = function (data: any, filter: string): boolean {
+      let searchTerms = JSON.parse(filter)
+      let address1Search = data.address1.toString().toLowerCase().indexOf(searchTerms.address1.toString().toLowerCase()) != -1
+      let address2Search = data.address2.toString().toLowerCase().indexOf(searchTerms.address2.toString().toLowerCase()) != -1
+
+      return address1Search && address2Search;
+    }
+    return filterFunction
+  }
   fetchSuppliers() {
     this.isLoadingResults = true;
     const href = 'http://158.181.176.170:9999/api/abonents/GetByt?nch=' + this.nch;
@@ -38,6 +60,21 @@ export class AbonentListBytComponent implements OnInit {
         this.ordersData = new MatTableDataSource(_.data);
         this.ordersData.paginator = this.paginator;
         this.ordersData.sort = this.sort;
+
+
+        this.address1Filter.valueChanges.subscribe((value) => {
+          console.log(value);
+          this.filteredValues['address1'] = value;
+          this.ordersData.filter = JSON.stringify(this.filteredValues);
+        });
+
+
+        this.address2Filter.valueChanges
+          .subscribe(value => {
+            this.filteredValues['address2'] = value
+            this.ordersData.filter = JSON.stringify(this.filteredValues)
+          });
+        this.ordersData.filterPredicate = this.createFilter();
         //this.notificationSvc.success('Данные успешно загружены!');
       }
       else {
@@ -61,7 +98,7 @@ export class AbonentListBytComponent implements OnInit {
       }
     });
   }
-  applyFilter() {
+  applyFilterOld() {
     this.fetchSuppliers();
   }
 
