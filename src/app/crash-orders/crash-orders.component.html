@@ -140,7 +140,7 @@
 
 
         <tr mat-header-row *matHeaderRowDef="suppliersDisplayedColumns"></tr>
-        <tr [class.text-red]="deleted[idx] == row" mat-row
+        <tr [class.text-red]="row.data_vkl == null" mat-row
             *matRowDef="let row; columns: suppliersDisplayedColumns;let idx = index;">
         </tr>
     </table>

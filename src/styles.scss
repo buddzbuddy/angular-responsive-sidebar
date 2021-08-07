@@ -66,8 +66,13 @@ snack-bar-container.notification simple-snack-bar {
 }
 
 .text-red {
-  background-color: #d34545 !important;
-  /*text-decoration: line-through;
-    text-decoration-color: red;
-    text-decoration-style: double;*/
+  background-color: pink !important;
+}
+
+.text-yellow {
+  background-color: yellow !important;
+}
+
+.text-green {
+  background-color: yellowgreen !important;
 }
