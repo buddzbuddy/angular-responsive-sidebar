@@ -30,7 +30,7 @@ export class AbonentOrdersComponent implements OnInit {
 
   fetchSuppliers() {
     this.isLoadingResults = true;
-    const href = 'http://158.181.176.170:9999/api/orders/getabonentorders';
+    const href = 'http://192.168.88.16:9999/api/orders/getabonentorders';
     const requestUrl = `${href}`;
     this._httpClient.get<any>(requestUrl).subscribe(_ => {
       if (_.result) {
@@ -47,7 +47,7 @@ export class AbonentOrdersComponent implements OnInit {
   }
   fetchSuppliersByPeriod() {
     this.isLoadingResults = true;
-    const href = 'http://158.181.176.170:9999/api/orders/GetAbonentOrdersForPeriod';
+    const href = 'http://192.168.88.16:9999/api/orders/GetAbonentOrdersForPeriod';
     const requestUrl = `${href}`;
     let obj = {
       sdata: this.sdata,

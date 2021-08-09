@@ -22,7 +22,7 @@ export class LoginPageComponent implements OnInit {
       this.notificationSvc.warn('Заполните поля!');
       return;
     }
-    const href = `http://158.181.176.170:9999/api/users/login?username=${this.username}&password=${this.password}`;
+    const href = `http://192.168.88.16:9999/api/users/login?username=${this.username}&password=${this.password}`;
     const requestUrl = `${href}`;
     this._httpClient.get<any>(requestUrl).subscribe(_ => {
       if (_.result) {
