@@ -25,29 +25,30 @@ export class AbonentListBytComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   address1Filter = new FormControl();
   address2Filter = new FormControl();
-  //private filterValues = { address1: '', address2: '' }
+  raion_nameFilter = new FormControl();
+  nchFilter = new FormControl();
+  fioFilter = new FormControl();
+  tpFilter = new FormControl();
+  zavNomerFilter = new FormControl();
   filteredValues = {
-    address1: '', address2: ''
+    address1: '', address2: '', raion_name: '',nch: '',fio: '',tp: '',zavNomer: '',
   };
   nch = ''
   ngOnInit() {
     this.fetchSuppliers();
   }
-  applyFilter(filterValue: string) {
-    let filter = {
-      address1: filterValue.trim().toLowerCase(),
-      address2: filterValue.trim().toLowerCase()
-    }
-    this.ordersData.filter = JSON.stringify(filter)
-  }
-
   createFilter() {
     let filterFunction = function (data: any, filter: string): boolean {
       let searchTerms = JSON.parse(filter)
       let address1Search = data.address1.toString().toLowerCase().indexOf(searchTerms.address1.toString().toLowerCase()) != -1
       let address2Search = data.address2.toString().toLowerCase().indexOf(searchTerms.address2.toString().toLowerCase()) != -1
+      let raion_nameSearch = data.raion_name.toString().toLowerCase().indexOf(searchTerms.raion_name.toString().toLowerCase()) != -1
+      let nchSearch = data.nch.toString().toLowerCase().indexOf(searchTerms.nch.toString().toLowerCase()) != -1
+      let fioSearch = data.fio.toString().toLowerCase().indexOf(searchTerms.fio.toString().toLowerCase()) != -1
+      let tpSearch = data.tp.toString().toLowerCase().indexOf(searchTerms.tp.toString().toLowerCase()) != -1
+      let zavNomerSearch = data.zavNomer.toString().toLowerCase().indexOf(searchTerms.zavNomer.toString().toLowerCase()) != -1
 
-      return address1Search && address2Search;
+      return address1Search && address2Search && raion_nameSearch && nchSearch && fioSearch && tpSearch && zavNomerSearch;
     }
     return filterFunction
   }
@@ -72,6 +73,46 @@ export class AbonentListBytComponent implements OnInit {
         this.address2Filter.valueChanges
           .subscribe(value => {
             this.filteredValues['address2'] = value
+            this.ordersData.filter = JSON.stringify(this.filteredValues)
+          });
+
+
+
+          this.raion_nameFilter.valueChanges
+          .subscribe(value => {
+            this.filteredValues['raion_name'] = value
+            this.ordersData.filter = JSON.stringify(this.filteredValues)
+          });
+
+
+
+          this.nchFilter.valueChanges
+          .subscribe(value => {
+            this.filteredValues['nch'] = value
+            this.ordersData.filter = JSON.stringify(this.filteredValues)
+          });
+
+
+
+          this.fioFilter.valueChanges
+          .subscribe(value => {
+            this.filteredValues['fio'] = value
+            this.ordersData.filter = JSON.stringify(this.filteredValues)
+          });
+
+
+
+          this.tpFilter.valueChanges
+          .subscribe(value => {
+            this.filteredValues['tp'] = value
+            this.ordersData.filter = JSON.stringify(this.filteredValues)
+          });
+
+
+
+          this.zavNomerFilter.valueChanges
+          .subscribe(value => {
+            this.filteredValues['zavNomer'] = value
             this.ordersData.filter = JSON.stringify(this.filteredValues)
           });
         this.ordersData.filterPredicate = this.createFilter();
