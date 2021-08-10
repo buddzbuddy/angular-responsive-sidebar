@@ -5,6 +5,7 @@ import { AbonentListPromComponent } from './abonent-list-prom/abonent-list-prom.
 import { AbonentOrdersComponent } from './abonent-orders/abonent-orders.component';
 import { ChatComponent } from './chat/chat.component';
 import { CrashOrdersComponent } from './crash-orders/crash-orders.component';
+import { MapElectricityComponent } from './map-electricity/map-electricity.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { PlannedoffsComponent } from './plannedoffs/plannedoffs.component';
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'abonent-list-byt', component: AbonentListBytComponent },
   { path: 'abonent-list-prom', component: AbonentListPromComponent },
   { path: 'planned-offs', component: PlannedoffsComponent },
+  { path: 'map-electricity', component: MapElectricityComponent },
   { path: 'chat', component: ChatComponent },
 ];
 

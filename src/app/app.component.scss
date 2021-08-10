@@ -71,6 +71,8 @@ mat-divider {
 button.menu-button {
     padding: 15px;
     font-size: large;
+    white-space: pre-wrap !important;
+    text-align: left !important;
 }
 button.selected {
     background-color: rgba(0, 0, 0, 0.28);

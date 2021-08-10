@@ -26,6 +26,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { LocalStorageService } from './services/local-storage.service';
 import { PlannedoffsComponent } from './plannedoffs/plannedoffs.component';
 import { PlannedOffsExtComponent } from './plannedoffs/planned-offs-ext/planned-offs-ext.component';
+import { MapElectricityComponent } from './map-electricity/map-electricity.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { PlannedOffsExtComponent } from './plannedoffs/planned-offs-ext/planned-
     ChatComponent,
     LoginPageComponent,
     PlannedoffsComponent,
-    PlannedOffsExtComponent
+    PlannedOffsExtComponent,
+    MapElectricityComponent
   ],
   imports: [
     BrowserModule,
