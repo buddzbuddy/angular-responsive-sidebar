@@ -16,7 +16,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 export class CrashOrdersComponent implements OnInit {
 
   constructor(private _httpClient: HttpClient, public dialog: MatDialog, private router: Router, private _formBuilder: FormBuilder, private notificationSvc: NotificationService) { }
-  suppliersDisplayedColumns: string[] = ['action', 'nazvanie_slujby', 'tp', 'ulisa', 'data_otkl', 'vid_otkl', 'pov_el', 'data_vkl', 'abon_shet', 'fio', 'dom', 'tel', 'fioUser'/*, 'statusy', 'vid_povrej_elementov', 'remont', 'note'*/];
+  suppliersDisplayedColumns: string[] = ['action', 'nazvanie_slujby', 'tp', 'ulisa', 'data_otkl', 'vid_otkl', 'pov_el', 'data_vkl', 'abon_shet', 'fio', 'dom', 'tel', 'fioUser', 'note'];
   ordersData: MatTableDataSource<any> = new MatTableDataSource();
 
   isLoadingResults = false;
