@@ -24,6 +24,8 @@ import { MatTableExporterModule } from 'mat-table-exporter';
 import { ChatComponent } from './chat/chat.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { LocalStorageService } from './services/local-storage.service';
+import { PlannedoffsComponent } from './plannedoffs/plannedoffs.component';
+import { PlannedOffsExtComponent } from './plannedoffs/planned-offs-ext/planned-offs-ext.component';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { LocalStorageService } from './services/local-storage.service';
     EditOrderDialog,
     LoginPageComponent,
     ChatComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    PlannedoffsComponent,
+    PlannedOffsExtComponent
   ],
   imports: [
     BrowserModule,

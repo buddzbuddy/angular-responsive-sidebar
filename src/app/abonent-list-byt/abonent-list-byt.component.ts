@@ -54,7 +54,7 @@ export class AbonentListBytComponent implements OnInit {
   }
   fetchSuppliers() {
     this.isLoadingResults = true;
-    const href = 'http://192.168.88.16:9999/api/abonents/GetByt?nch=' + this.nch;
+    const href = 'http://158.181.176.170:9999/api/abonents/GetByt?nch=' + this.nch;
     const requestUrl = `${href}`;
     this._httpClient.get<any>(requestUrl).subscribe(_ => {
       if (_.result) {
@@ -194,7 +194,7 @@ export class AddNewOrderDialog implements OnInit {
   }
   statusObj: any = null
   loadStatuses(zavNomer: string) {
-    const href = 'http://192.168.88.16:9999/api/abonents/GetStatusByZavNomer?zavNomer=' + zavNomer;
+    const href = 'http://158.181.176.170:9999/api/abonents/GetStatusByZavNomer?zavNomer=' + zavNomer;
     const requestUrl = `${href}`;
     this._httpClient.get<any>(requestUrl).subscribe(_ => {
       if (_.result) {
@@ -204,7 +204,7 @@ export class AddNewOrderDialog implements OnInit {
     });
   }
   loadTipSchetchika(zavNomer: string, idmarka: number) {
-    const href = `http://192.168.88.16:9999/api/abonents/GetTipShetchika?zavodNomer=${zavNomer}&idmarka=${idmarka}`;
+    const href = `http://158.181.176.170:9999/api/abonents/GetTipShetchika?zavodNomer=${zavNomer}&idmarka=${idmarka}`;
     const requestUrl = `${href}`;
     this._httpClient.get<any>(requestUrl).subscribe(_ => {
       let s = '';
@@ -220,7 +220,7 @@ export class AddNewOrderDialog implements OnInit {
 
   errorMessage = ''
   createCrashOrder() {
-    const href = `http://192.168.88.16:9999/api/orders/CreateCrashOrder`;
+    const href = `http://158.181.176.170:9999/api/orders/CreateCrashOrder`;
     const requestUrl = `${href}`;
     let obj = this.formGroup.value;
     obj['raion'] = this.data['raion'];
@@ -238,7 +238,7 @@ export class AddNewOrderDialog implements OnInit {
   }
 
   createAbonOrder() {
-    const href = `http://192.168.88.16:9999/api/orders/CreateAbonOrder`;
+    const href = `http://158.181.176.170:9999/api/orders/CreateAbonOrder`;
     const requestUrl = `${href}`;
     let obj = this.formGroup.value;
     obj['raion'] = this.data['raion'];

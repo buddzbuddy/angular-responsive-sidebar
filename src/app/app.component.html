@@ -49,6 +49,11 @@
             <mat-icon>personal_injury</mat-icon>
             <span>Мои заявки</span>
         </button>
+        <button (click)="goto('/planned-offs')" [class.selected]="router.isActive('/planned-offs', false)" mat-button
+            class="menu-button">
+            <mat-icon>flash_off</mat-icon>
+            <span>Плановые отключения</span>
+        </button>
         <button (click)="goto('/chat')" [class.selected]="router.isActive('/chat', false)" mat-button
             class="menu-button">
             <mat-icon>chat</mat-icon>

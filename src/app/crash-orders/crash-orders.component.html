@@ -139,6 +139,19 @@
         </ng-container>
 
 
+        <!-- Header row first group -->
+        <ng-container matColumnDef="header-row-first-group">
+            <th mat-header-cell *matHeaderCellDef [style.border-right]="'1px solid #e0e0e0'" [attr.colspan]="8">
+                Заявка
+            </th>
+        </ng-container>
+
+        <!-- Header row second group -->
+        <ng-container matColumnDef="header-row-second-group">
+            <th mat-header-cell *matHeaderCellDef [attr.colspan]="5"> Абонент </th>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['header-row-first-group', 'header-row-second-group']"></tr>
         <tr mat-header-row *matHeaderRowDef="suppliersDisplayedColumns"></tr>
         <tr [class.text-red]="row.data_vkl == null" [class.text-yellow]="isYellow(row.data_vkl)"
             [class.text-green]="isGreen(row.data_vkl)" mat-row
