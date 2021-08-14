@@ -7,6 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { NotificationService } from '../notification.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-complaints',
@@ -15,108 +16,28 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 })
 export class ComplaintsComponent implements OnInit {
 
-  constructor(private _httpClient: HttpClient, private router: Router, public dialog: MatDialog, private notificationSvc: NotificationService) { }
-  suppliersDisplayedColumns: string[] = ['action', 'raion_name', 'nch', 'fio', 'address1', 'address2', 'tp', 'zavNomer', 'ccounter2', 'debet', 'penya', 'akt', 'carea2', 'carea'/*, 'vid_povrej_elementov', 'remont', 'note'*/];
+  constructor(private localStorageSvc: LocalStorageService, private _httpClient: HttpClient, private router: Router, public dialog: MatDialog, private notificationSvc: NotificationService) { }
+  suppliersDisplayedColumns: string[] = ['raion', 'data_prin_jalob', 'komu_slujba', 'fioUser', 'fio', 'adres', 'tel', 'prichina', 'vypolnen', 'otv_liso', 'ot_kogo'];
   ordersData: MatTableDataSource<any> = new MatTableDataSource();
 
   isLoadingResults = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  address1Filter = new FormControl();
-  address2Filter = new FormControl();
-  raion_nameFilter = new FormControl();
-  nchFilter = new FormControl();
-  fioFilter = new FormControl();
-  tpFilter = new FormControl();
-  zavNomerFilter = new FormControl();
-  filteredValues = {
-    address1: '', address2: '', raion_name: '', nch: '', fio: '', tp: '', zavNomer: '',
-  };
-  nch = ''
+  userId = 0
   ngOnInit() {
-    this.fetchSuppliers();
-  }
-  createFilter() {
-    let filterFunction = function (data: any, filter: string): boolean {
-      let searchTerms = JSON.parse(filter)
-      let address1Search = data.address1.toString().toLowerCase().indexOf(searchTerms.address1.toString().toLowerCase()) != -1
-      let address2Search = data.address2.toString().toLowerCase().indexOf(searchTerms.address2.toString().toLowerCase()) != -1
-      let raion_nameSearch = data.raion_name.toString().toLowerCase().indexOf(searchTerms.raion_name.toString().toLowerCase()) != -1
-      let nchSearch = data.nch.toString().toLowerCase().indexOf(searchTerms.nch.toString().toLowerCase()) != -1
-      let fioSearch = data.fio.toString().toLowerCase().indexOf(searchTerms.fio.toString().toLowerCase()) != -1
-      let tpSearch = data.tp.toString().toLowerCase().indexOf(searchTerms.tp.toString().toLowerCase()) != -1
-      let zavNomerSearch = data.zavNomer.toString().toLowerCase().indexOf(searchTerms.zavNomer.toString().toLowerCase()) != -1
-
-      return address1Search && address2Search && raion_nameSearch && nchSearch && fioSearch && tpSearch && zavNomerSearch;
+    if (this.localStorageSvc.has('user')) {
+      this.userId = this.localStorageSvc.get('user')['id'];
+      this.fetchSuppliers();
     }
-    return filterFunction
   }
   fetchSuppliers() {
     this.isLoadingResults = true;
-    const href = 'http://158.181.176.170:9999/api/abonents/GetByt?nch=' + this.nch;
+    const href = 'http://158.181.176.170:9999/api/complaints/GetList?userId=' + this.userId;
     const requestUrl = `${href}`;
     this._httpClient.get<any>(requestUrl).subscribe(_ => {
       if (_.result) {
         this.ordersData = new MatTableDataSource(_.data);
         this.ordersData.paginator = this.paginator;
-        this.ordersData.sort = this.sort;
-
-
-        this.address1Filter.valueChanges.subscribe((value) => {
-          console.log(value);
-          this.filteredValues['address1'] = value;
-          this.ordersData.filter = JSON.stringify(this.filteredValues);
-        });
-
-
-        this.address2Filter.valueChanges
-          .subscribe(value => {
-            this.filteredValues['address2'] = value
-            this.ordersData.filter = JSON.stringify(this.filteredValues)
-          });
-
-
-
-        this.raion_nameFilter.valueChanges
-          .subscribe(value => {
-            this.filteredValues['raion_name'] = value
-            this.ordersData.filter = JSON.stringify(this.filteredValues)
-          });
-
-
-
-        this.nchFilter.valueChanges
-          .subscribe(value => {
-            this.filteredValues['nch'] = value
-            this.ordersData.filter = JSON.stringify(this.filteredValues)
-          });
-
-
-
-        this.fioFilter.valueChanges
-          .subscribe(value => {
-            this.filteredValues['fio'] = value
-            this.ordersData.filter = JSON.stringify(this.filteredValues)
-          });
-
-
-
-        this.tpFilter.valueChanges
-          .subscribe(value => {
-            this.filteredValues['tp'] = value
-            this.ordersData.filter = JSON.stringify(this.filteredValues)
-          });
-
-
-
-        this.zavNomerFilter.valueChanges
-          .subscribe(value => {
-            this.filteredValues['zavNomer'] = value
-            this.ordersData.filter = JSON.stringify(this.filteredValues)
-          });
-        this.ordersData.filterPredicate = this.createFilter();
-        //this.notificationSvc.success('Данные успешно загружены!');
       }
       else {
         this.notificationSvc.warn('Что-то пошло не так ((');
@@ -146,7 +67,6 @@ export class ComplaintsComponent implements OnInit {
   }
 
   clearFilter() {
-    this.nch = '';
     this.fetchSuppliers();
   }
   goBack() {
