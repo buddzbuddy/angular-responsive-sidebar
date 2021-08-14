@@ -27,6 +27,7 @@ import { LocalStorageService } from './services/local-storage.service';
 import { PlannedoffsComponent } from './plannedoffs/plannedoffs.component';
 import { PlannedOffsExtComponent } from './plannedoffs/planned-offs-ext/planned-offs-ext.component';
 import { MapElectricityComponent } from './map-electricity/map-electricity.component';
+import { AddNewComplaintDialog, ComplaintsComponent } from './complaints/complaints.component';
 
 
 @NgModule({
@@ -36,9 +37,11 @@ import { MapElectricityComponent } from './map-electricity/map-electricity.compo
     LoginPageComponent,
     ChatComponent,
     LoginDialog,
+    AddNewComplaintDialog,
     PlannedoffsComponent,
     PlannedOffsExtComponent,
-    MapElectricityComponent
+    MapElectricityComponent,
+    ComplaintsComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,8 @@ import { MapElectricityComponent } from './map-electricity/map-electricity.compo
   entryComponents: [
     AddNewOrderDialog,
     EditOrderDialog,
-    LoginDialog
+    LoginDialog,
+    AddNewComplaintDialog
   ]
 })
 export class AppModule { }

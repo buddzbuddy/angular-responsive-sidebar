@@ -54,6 +54,11 @@
             <mat-icon>flash_off</mat-icon>
             <span>Плановые отключения</span>
         </button>
+        <button (click)="goto('/complaints')" [class.selected]="router.isActive('/complaints', false)" mat-button
+            class="menu-button">
+            <mat-icon>feedback</mat-icon>
+            <span>Жалобы и обращения</span>
+        </button>
         <button (click)="goto('/map-electricity')" [class.selected]="router.isActive('/map-electricity', false)"
             mat-button class="menu-button">
             <mat-icon>where_to_vote</mat-icon>
@@ -63,14 +68,6 @@
             <mat-icon>summarize</mat-icon>
             <span>Отчеты</span>
         </button>
-
-        <mat-divider></mat-divider>
-
-        <button mat-button class="menu-button">
-            <mat-icon>help</mat-icon>
-            <span>Помощь</span>
-        </button>
-
     </mat-sidenav>
     <mat-sidenav-content>
         <div class="content mat-elevation-z8">
