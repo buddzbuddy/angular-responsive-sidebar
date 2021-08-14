@@ -19,8 +19,8 @@
 
         <img class="avatar mat-elevation-z8" src="assets/avatar.jpg" />
 
-        <h4 class="name">{{userInfo.fioUser}}</h4>
-        <p class="designation">{{userInfo.dol}}</p>
+        <h4 class="name">{{userInfo?.fioUser}}</h4>
+        <p class="designation">{{userInfo?.dol}}</p>
 
         <mat-divider></mat-divider>
 
@@ -79,7 +79,7 @@
     </mat-sidenav-content>
 </mat-sidenav-container>
 
-<div class="liveChat">Чат
+<div class="liveChat">Чат {{userInfo == null ? 'не подключен' : '(онлайн)'}}
     <div class="chat" [class.chat-opened]="chat_opened">
         <span>
             Чат
@@ -88,6 +88,6 @@
                 <mat-icon *ngIf="!chat_opened">lock_open</mat-icon>
             </button>
         </span>
-        <app-chat></app-chat>
+        <app-chat *ngIf="userInfo != null" [user-info]="userInfo"></app-chat>
     </div>
 </div>

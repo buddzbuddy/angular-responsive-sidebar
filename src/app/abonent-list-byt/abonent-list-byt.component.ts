@@ -129,7 +129,9 @@ export class AbonentListBytComponent implements OnInit {
   }
   createOrder(row: any) {
     const dialogRef = this.dialog.open(AddNewOrderDialog, {
-      data: row
+      data: row,
+      disableClose: true,
+      hasBackdrop: false
     });
     dialogRef.afterClosed().subscribe(_ => {
       if (_) {

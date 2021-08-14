@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ChatService } from 'src/app/services/chat.service';
 import { MessageDto } from 'src/app/Dto/MessageDto';
 import { LocalStorageService } from '../services/local-storage.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -9,19 +10,34 @@ import { LocalStorageService } from '../services/local-storage.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
-  constructor(private localStorageSvc: LocalStorageService, private chatService: ChatService) { }
-  userInfo: any = {}
+export class ChatComponent implements OnInit, AfterViewChecked {
+  constructor(private localStorageSvc: LocalStorageService, private _httpClient: HttpClient, private chatService: ChatService) { }
+  @Input("user-info") userInfo: any
+  @ViewChild('scrollMe') private myScrollContainer!: ElementRef;
   ngOnInit(): void {
     this.chatService.retrieveMappedObject().subscribe((receivedObj: MessageDto) => { this.addToInbox(receivedObj); });  // calls the service method to get the new messages sent
-    if (!this.localStorageSvc.has('user')) {
-      window.location.reload();
-    }
-    else {
-      this.userInfo = this.localStorageSvc.get('user');
-      this.msgDto.user = this.userInfo.fioUser
-      this.msgDto.position = this.userInfo.dol
-    }
+    this.userInfo = this.localStorageSvc.get('user');
+    this.msgDto.user = this.userInfo.fioUser;
+    this.msgDto.position = this.userInfo.dol;
+    this.loadMsgList();
+  }
+
+  loadMsgList() {
+    const href = 'http://158.181.176.170:9999/api/chat/list';
+    const requestUrl = `${href}`;
+    this._httpClient.get<any[]>(requestUrl).subscribe(_ => {
+      this.msgInboxArray = _;
+    });
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
   }
 
   msgDto: MessageDto = new MessageDto();

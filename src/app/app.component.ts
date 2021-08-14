@@ -3,8 +3,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { LocalStorageService } from './services/local-storage.service';
-import { MatDialog } from '@angular/material/dialog';
-import { LoginPageComponent } from './login-page/login-page.component';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -16,16 +15,21 @@ export class AppComponent implements OnInit, AfterViewInit {
   sidenav!: MatSidenav;
 
   constructor(private observer: BreakpointObserver, public dialog: MatDialog, public router: Router, private localStorageSvc: LocalStorageService) { }
-  userInfo: any = {}
+  userInfo: any
   chat_opened: boolean = false;
   pinChat() {
     this.chat_opened = !this.chat_opened;
   }
   ngOnInit(): void {
     if (!this.localStorageSvc.has('user')) {
-      const dialogRef = this.dialog.open(LoginPageComponent, {
+      const dialogRef = this.dialog.open(LoginDialog, {
         width: '500px',
         disableClose: true
+      });
+      dialogRef.afterClosed().subscribe(_ => {
+        if (this.localStorageSvc.has('user')) {
+          this.userInfo = this.localStorageSvc.get('user');
+        }
       });
     }
     else {
@@ -53,5 +57,18 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   goto(routeUrl: string) {
     this.router.navigate([routeUrl]);
+  }
+}
+
+
+
+@Component({
+  selector: 'login-dialog',
+  templateUrl: 'login-dialog.html',
+})
+export class LoginDialog {
+  constructor(public dialogRef: MatDialogRef<LoginDialog>,) { }
+  onLoginSucceed() {
+    this.dialogRef.close();
   }
 }

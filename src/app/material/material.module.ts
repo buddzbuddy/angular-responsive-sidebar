@@ -37,6 +37,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   imports: [
@@ -72,7 +73,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatAutocompleteModule,
     MatButtonToggleModule,
     MatSlideToggleModule,
-    MatRippleModule
+    MatRippleModule,
+    DragDropModule
   ],
   exports: [
     MatTableModule,
@@ -104,7 +106,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatAutocompleteModule,
     MatButtonToggleModule,
     MatSlideToggleModule,
-    MatRippleModule
+    MatRippleModule,
+    DragDropModule
   ]
 })
 export class MaterialModule { }

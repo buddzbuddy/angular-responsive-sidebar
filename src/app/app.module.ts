@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent, LoginDialog } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -35,7 +35,7 @@ import { MapElectricityComponent } from './map-electricity/map-electricity.compo
     EditOrderDialog,
     LoginPageComponent,
     ChatComponent,
-    LoginPageComponent,
+    LoginDialog,
     PlannedoffsComponent,
     PlannedOffsExtComponent,
     MapElectricityComponent
@@ -58,7 +58,7 @@ import { MapElectricityComponent } from './map-electricity/map-electricity.compo
   entryComponents: [
     AddNewOrderDialog,
     EditOrderDialog,
-    LoginPageComponent
+    LoginDialog
   ]
 })
 export class AppModule { }

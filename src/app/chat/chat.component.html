@@ -1,5 +1,5 @@
 <div class="ud-body">
-  <div class="msg-box">
+  <div #scrollMe class="msg-box">
     <ul>
       <li *ngFor="let mObj of msgInboxArray" [ngClass]="mObj.user === msgDto.user ? 'in-msg' : 'ex-msg'">{{mObj.created
         | date:'dd.MM.yyyy HH:mm'}}<br /><span matTooltip="{{mObj.position}}">{{mObj.user}}</span><br /><span
