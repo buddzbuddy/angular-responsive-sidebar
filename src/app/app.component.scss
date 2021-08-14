@@ -78,3 +78,105 @@ button.selected {
     background-color: rgba(0, 0, 0, 0.28);
     border: 1px solid #ffffff61;
 }
+
+
+.liveChat {
+    color: #fff;
+    display: inline-block;
+    position: fixed;
+    bottom: 0;
+    right: 10%;
+    background-image: linear-gradient(90deg, #32959f 230px, #36504D 0);
+    z-index: 10;
+    width: 300px;
+    height: 45px;
+    transition: all 0.1s;
+  }
+  .liveChat:before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    padding-right: 30px;
+  }
+  .liveChat:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    right: 8%;
+    top: 40%;
+    border-top: 5px solid #fff;
+    border-left: 5px solid #fff;
+    transform: rotate(45deg);
+    width: 15px;
+    height: 15px;
+    z-index: 11;
+  }
+  .liveChat:hover .chat {
+    height: 300px;
+    bottom: 0;
+  }
+  .chat-opened {
+    height: 300px !important;
+    bottom: 0;
+  }
+
+  .chat {
+    cursor: default;
+    color: #000;
+    z-index: 12;
+    position: fixed;
+    right: 10%;
+    bottom: -1;
+    width: 300px;
+    height: 0;
+    transition: all 0.5s;
+    border: 1px solid #aaa;
+  }
+  .chat > span {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+  }
+  .lock-btn {
+    position: absolute;
+    bottom: -10px;
+    left: 87%;
+  }
+  .chat span:before {
+    color: #30CC30;
+    content: "●";
+    padding: 0 10px;
+    animation: online 3s infinite ease-in;
+  }
+  .chat:before {
+    content: "";
+    display: block;
+    background-color: #fff;
+    border-bottom: 1px solid #aaa;
+    height: 40px;
+  }
+  .chat .txt {
+    background-color: #aaa;
+    width: 100%;
+    height: 100%;
+  }
+  .chat input {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10%;
+    border: none;
+  }
+
+  @keyframes online {
+    0% {
+      color: #30CC30;
+    }
+    50% {
+      color: #fff;
+    }
+    100% {
+      color: #30CC30;
+    }
+  }

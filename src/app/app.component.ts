@@ -17,6 +17,10 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   constructor(private observer: BreakpointObserver, public dialog: MatDialog, public router: Router, private localStorageSvc: LocalStorageService) { }
   userInfo: any = {}
+  chat_opened: boolean = false;
+  pinChat() {
+    this.chat_opened = !this.chat_opened;
+  }
   ngOnInit(): void {
     if (!this.localStorageSvc.has('user')) {
       const dialogRef = this.dialog.open(LoginPageComponent, {

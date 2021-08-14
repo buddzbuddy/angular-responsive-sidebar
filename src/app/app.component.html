@@ -59,11 +59,6 @@
             <mat-icon>where_to_vote</mat-icon>
             <span>Карты электрических сетей</span>
         </button>
-        <button (click)="goto('/chat')" [class.selected]="router.isActive('/chat', false)" mat-button
-            class="menu-button">
-            <mat-icon>chat</mat-icon>
-            <span>Чат</span>
-        </button>
         <button [class.selected]="router.isActive('/reports', false)" mat-button class="menu-button">
             <mat-icon>summarize</mat-icon>
             <span>Отчеты</span>
@@ -83,3 +78,16 @@
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
+
+<div class="liveChat">Чат
+    <div class="chat" [class.chat-opened]="chat_opened">
+        <span>
+            Чат
+            <button [color]="chat_opened ? 'primary' : 'warn'" class="lock-btn" mat-icon-button (click)="pinChat()">
+                <mat-icon *ngIf="chat_opened">lock</mat-icon>
+                <mat-icon *ngIf="!chat_opened">lock_open</mat-icon>
+            </button>
+        </span>
+        <app-chat></app-chat>
+    </div>
+</div>

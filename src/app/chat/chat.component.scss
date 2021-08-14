@@ -1,22 +1,11 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-
 .text-center {
   text-align: center;
-}
-
-h2 {
-  margin: 0;
 }
 
 .msg-italic-style {
   font-style: italic;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 18px;
+  font-size: small;
 }
 
 
@@ -40,24 +29,12 @@ h2 {
 
 // body
 .ud-body {
-  top: 0; bottom: 0;
-  left: 0;
-  right: 0;
-
-  padding: 0 10% 0;
+    background-color: #fafafa;
 
   .msg-box {
-      width: 100%;
-
-  min-height: 200px;
-  max-height: 500px;
-      margin-top: 20px;
-      border: 2px solid #191D32;
-      border-radius: .5em;
-      padding: 10px 30px;
-      font-size: 14px;
-
+    height: 210px;
       overflow: auto;
+      padding: 5px;
 
       ul {
           list-style: none;
@@ -72,18 +49,15 @@ h2 {
           .in-msg {
               margin-bottom: 10px;
               color: #DD1155;
-
               text-align: right;
           }
+          font-size:small;
       }
 
   }
 
   .ud-flex-row {
-      margin-top: 20px;
-      height: 40px;
       width: 100%;
-
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -92,7 +66,6 @@ h2 {
       .msg-input {
           height: 100%;
           border-radius: .5em;
-          border: 0px solid rgba(0, 0, 0, 0);
           padding: 10px;
           flex: 1 1 0;
           border: 1.5px solid #DD1155;
@@ -105,21 +78,8 @@ h2 {
       }
 
       .send-btn {
-          height: 100%;
-          width: 100px;
-          border-radius: .3em;
           background-color: #DD1155;
-          margin-left: 20px;
-          border: 0px solid rgba(0, 0, 0, 0);
-          font-size: 25px;
           color: #FDFFFF;
-          position: relative;
-      }
-
-      .send-btn:focus {
-          outline: none;
-          border-color: #DD1155;
-          box-shadow: 0 0 5px #DD1155;
       }
 
 

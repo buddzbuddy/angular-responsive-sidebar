@@ -21,7 +21,7 @@ export class ChatService {
     this.connection.onclose(async () => {
       await this.start();
     });
-    this.connection.on("ReceiveOne", (user: any, message: any) => { this.mapReceivedMessage(user, message); });
+    this.connection.on("ReceiveOne", (user: string, message: string, position: string) => { this.mapReceivedMessage(user, message, position); });
     this.start();
   }
 
@@ -37,9 +37,10 @@ export class ChatService {
     }
   }
 
-  private mapReceivedMessage(user: string, message: string): void {
+  private mapReceivedMessage(user: string, message: string, position: string): void {
     this.receivedMessageObject.user = user;
     this.receivedMessageObject.msgText = message;
+    this.receivedMessageObject.position = position;
     this.sharedObj.next(this.receivedMessageObject);
   }
 

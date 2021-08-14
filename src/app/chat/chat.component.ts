@@ -19,7 +19,8 @@ export class ChatComponent implements OnInit {
     }
     else {
       this.userInfo = this.localStorageSvc.get('user');
-      this.msgDto.user = this.userInfo.fioUser + ' - ' + this.userInfo.dol
+      this.msgDto.user = this.userInfo.fioUser
+      this.msgDto.position = this.userInfo.dol
     }
   }
 
@@ -28,8 +29,8 @@ export class ChatComponent implements OnInit {
 
   send(): void {
     if (this.msgDto) {
-      if (this.msgDto.user.length == 0 || this.msgDto.msgText.length == 0) {
-        window.alert("Both fields are required.");
+      if (this.msgDto.msgText.length == 0) {
+        window.alert("Текст пустой");
         return;
       } else {
         this.chatService.broadcastMessage(this.msgDto);                   // Send the message via a service
@@ -41,6 +42,7 @@ export class ChatComponent implements OnInit {
   addToInbox(obj: MessageDto) {
     let newObj = {
       user: obj.user,
+      position: obj.position,
       msgText: obj.msgText,
       created: new Date()
     }
