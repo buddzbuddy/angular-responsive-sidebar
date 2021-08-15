@@ -9,6 +9,7 @@ import { CrashOrdersComponent } from './crash-orders/crash-orders.component';
 import { MapElectricityComponent } from './map-electricity/map-electricity.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { PlannedoffsComponent } from './plannedoffs/plannedoffs.component';
+import { ReportsComponent } from './reports/reports.component';
 
 const routes: Routes = [
   { path: '', component: CrashOrdersComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'planned-offs', component: PlannedoffsComponent },
   { path: 'complaints', component: ComplaintsComponent },
   { path: 'map-electricity', component: MapElectricityComponent },
+  { path: 'reports', component: ReportsComponent },
   { path: 'chat', component: ChatComponent },
 ];
 

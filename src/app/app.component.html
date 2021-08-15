@@ -64,7 +64,8 @@
             <mat-icon>where_to_vote</mat-icon>
             <span>Карты электрических сетей</span>
         </button>
-        <button [class.selected]="router.isActive('/reports', false)" mat-button class="menu-button">
+        <button (click)="goto('/reports')" [class.selected]="router.isActive('/reports', false)" mat-button
+            class="menu-button">
             <mat-icon>summarize</mat-icon>
             <span>Отчеты</span>
         </button>

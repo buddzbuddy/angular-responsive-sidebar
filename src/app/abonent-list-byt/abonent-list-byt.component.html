@@ -5,7 +5,7 @@
   <!--<a mat-button color="primary" routerLink="view-audit-section" matTooltip="Просмотреть запросы">Аудит запросов</a>
   <button mat-button color="secondary" (click)="goBack()">Назад</button>-->
 </mat-toolbar>
-<mat-accordion>
+<!--<mat-accordion>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -34,13 +34,13 @@
     <button mat-raised-button [disabled]="!nch.length" (click)="applyFilterOld()" color="primary">Применить</button>
     <button mat-raised-button [disabled]="!nch.length" color="secondary" (click)="clearFilter()">Сбросить</button>
   </mat-expansion-panel>
-</mat-accordion>
+</mat-accordion>-->
 <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
 <div class="responsive">
-  <button color="primary" matTooltip="Скачать в Excel" mat-button
+  <!--<button color="primary" matTooltip="Скачать в Excel" mat-button
     (click)="exporter.exportTable('xlsx', {fileName:'export-file', sheet: 'sheet_name', Props: {Author: 'Talha'}})">
     <mat-icon>get_app</mat-icon> скачать Excel
-  </button>
+  </button>-->
   <table matTableExporter #exporter="matTableExporter" mat-table [dataSource]="ordersData" class="example-table"
     matSort>
     <!-- Created Column -->

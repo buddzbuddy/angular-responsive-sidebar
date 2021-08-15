@@ -5,7 +5,7 @@
     <!--<a mat-button color="primary" routerLink="view-audit-section" matTooltip="Просмотреть запросы">Аудит запросов</a>
     <button mat-button color="secondary" (click)="goBack()">Назад</button>-->
 </mat-toolbar>
-<mat-accordion>
+<mat-accordion *ngIf="withFilter">
     <mat-expansion-panel>
         <mat-expansion-panel-header>
             <mat-panel-title>
@@ -48,7 +48,7 @@
 </mat-accordion>
 <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
 <div class="responsive">
-    <button color="primary" matTooltip="Скачать в Excel" mat-button
+    <button *ngIf="withFilter" color="primary" matTooltip="Скачать в Excel" mat-button
         (click)="exporter.exportTable('xlsx', {fileName:'export-file', sheet: 'sheet_name', Props: {Author: 'Talha'}})">
         <mat-icon>get_app</mat-icon> скачать Excel
     </button>
@@ -58,12 +58,14 @@
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let row">
-                <button mat-icon-button (click)="cancelOrder(row)" color="warn" matTooltip="Отменить заявку">
-                    <mat-icon>cancel</mat-icon>
-                </button>
-                <button mat-icon-button (click)="editOrder(row)" color="primary" matTooltip="Редактировать">
-                    <mat-icon>edit</mat-icon>
-                </button>
+                <ng-container *ngIf="withActions">
+                    <button mat-icon-button (click)="cancelOrder(row)" color="warn" matTooltip="Отменить заявку">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="editOrder(row)" color="primary" matTooltip="Редактировать">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </ng-container>
             </td>
         </ng-container>
         <!-- Created Column -->

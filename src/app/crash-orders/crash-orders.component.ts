@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, ViewChild, AfterViewInit, OnInit, Inject } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, OnInit, Inject, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -14,7 +14,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
   styleUrls: ['./crash-orders.component.scss']
 })
 export class CrashOrdersComponent implements OnInit {
-
+  @Input("with-filter") withFilter: boolean = false;
+  @Input("with-actions") withActions: boolean = true;
   constructor(private _httpClient: HttpClient, public dialog: MatDialog, private router: Router, private _formBuilder: FormBuilder, private notificationSvc: NotificationService) { }
   suppliersDisplayedColumns: string[] = ['action', 'nazvanie_slujby', 'tp', 'ulisa', 'data_otkl', 'vid_otkl', 'pov_el', 'data_vkl', 'abon_shet', 'fio', 'dom', 'tel', 'fioUser', 'note'];
   ordersData: MatTableDataSource<any> = new MatTableDataSource();
