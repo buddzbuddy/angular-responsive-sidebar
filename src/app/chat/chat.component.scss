@@ -5,7 +5,7 @@
 .msg-italic-style {
   font-style: italic;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: small;
+  font-size: 17px;
 }
 
 
@@ -32,7 +32,7 @@
     background-color: #fafafa;
 
   .msg-box {
-    height: 210px;
+    height: 410px;
       overflow: auto;
       padding: 5px;
 
@@ -52,7 +52,7 @@
               color: #DD1155;
               text-align: right;
           }
-          font-size:small;
+          font-size:16px;
       }
 
   }

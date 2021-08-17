@@ -32,7 +32,7 @@ export class CrashOrdersComponent implements OnInit {
 
   fetchSuppliers() {
     this.isLoadingResults = true;
-    const href = 'http://192.168.88.16:9999/api/orders/getcrashorders';
+    const href = 'http://212.112.127.26:4546/api/orders/getcrashorders';
     const requestUrl = `${href}`;
     this._httpClient.get<any>(requestUrl).subscribe(_ => {
       if (_.result) {
@@ -49,7 +49,7 @@ export class CrashOrdersComponent implements OnInit {
   }
   fetchSuppliersByPeriod() {
     this.isLoadingResults = true;
-    const href = 'http://192.168.88.16:9999/api/orders/GetCrashOrdersForPeriod';
+    const href = 'http://212.112.127.26:4546/api/orders/GetCrashOrdersForPeriod';
     const requestUrl = `${href}`;
     let obj = {
       sdata: this.sdata,
@@ -165,7 +165,7 @@ export class EditOrderDialog implements OnInit {
   }
   statusObj: any = null
   loadStatuses(zavNomer: string) {
-    const href = 'http://192.168.88.16:9999/api/abonents/GetStatusByZavNomer?zavNomer=' + zavNomer;
+    const href = 'http://212.112.127.26:4546/api/abonents/GetStatusByZavNomer?zavNomer=' + zavNomer;
     const requestUrl = `${href}`;
     this._httpClient.get<any>(requestUrl).subscribe(_ => {
       if (_.result) {
@@ -175,7 +175,7 @@ export class EditOrderDialog implements OnInit {
     });
   }
   loadTipSchetchika(zavNomer: string, idmarka: number) {
-    const href = `http://192.168.88.16:9999/api/abonents/GetTipShetchika?zavodNomer=${zavNomer}&idmarka=${idmarka}`;
+    const href = `http://212.112.127.26:4546/api/abonents/GetTipShetchika?zavodNomer=${zavNomer}&idmarka=${idmarka}`;
     const requestUrl = `${href}`;
     this._httpClient.get<any>(requestUrl).subscribe(_ => {
       let s = '';
@@ -191,7 +191,7 @@ export class EditOrderDialog implements OnInit {
 
   errorMessage = ''
   updateOrder() {
-    const href = `http://192.168.88.16:9999/api/orders/CreateCrashOrder`;
+    const href = `http://212.112.127.26:4546/api/orders/CreateCrashOrder`;
     const requestUrl = `${href}`;
     let obj = this.formGroup.value;
     obj['raion'] = this.data['raion'];
