@@ -23,7 +23,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   loadMsgList() {
-    const href = 'http://158.181.176.170:9999/api/chat/list';
+    const href = 'http://192.168.88.16:9999/api/chat/list';
     const requestUrl = `${href}`;
     this._httpClient.get<any[]>(requestUrl).subscribe(_ => {
       this.msgInboxArray = _;
