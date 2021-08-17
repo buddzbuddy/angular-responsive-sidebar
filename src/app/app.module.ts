@@ -29,6 +29,7 @@ import { PlannedOffsExtComponent } from './plannedoffs/planned-offs-ext/planned-
 import { MapElectricityComponent } from './map-electricity/map-electricity.component';
 import { AddNewComplaintDialog, ComplaintsComponent } from './complaints/complaints.component';
 import { ReportsComponent } from './reports/reports.component';
+import { MapGpsTraceComponent } from './map-gps-trace/map-gps-trace.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ReportsComponent } from './reports/reports.component';
     PlannedOffsExtComponent,
     MapElectricityComponent,
     ComplaintsComponent,
-    ReportsComponent
+    ReportsComponent,
+    MapGpsTraceComponent
   ],
   imports: [
     BrowserModule,

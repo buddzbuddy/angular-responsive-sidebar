@@ -64,6 +64,11 @@
             <mat-icon>where_to_vote</mat-icon>
             <span>Карты электрических сетей</span>
         </button>
+        <button (click)="goto('/map-gps-trace')" [class.selected]="router.isActive('/map-gps-trace', false)" mat-button
+            class="menu-button">
+            <mat-icon>share_location</mat-icon>
+            <span>Карта дислокации бригадных машин</span>
+        </button>
         <button (click)="goto('/reports')" [class.selected]="router.isActive('/reports', false)" mat-button
             class="menu-button">
             <mat-icon>summarize</mat-icon>

@@ -7,6 +7,7 @@ import { ChatComponent } from './chat/chat.component';
 import { ComplaintsComponent } from './complaints/complaints.component';
 import { CrashOrdersComponent } from './crash-orders/crash-orders.component';
 import { MapElectricityComponent } from './map-electricity/map-electricity.component';
+import { MapGpsTraceComponent } from './map-gps-trace/map-gps-trace.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { PlannedoffsComponent } from './plannedoffs/plannedoffs.component';
 import { ReportsComponent } from './reports/reports.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'planned-offs', component: PlannedoffsComponent },
   { path: 'complaints', component: ComplaintsComponent },
   { path: 'map-electricity', component: MapElectricityComponent },
+  { path: 'map-gps-trace', component: MapGpsTraceComponent },
   { path: 'reports', component: ReportsComponent },
   { path: 'chat', component: ChatComponent },
 ];
